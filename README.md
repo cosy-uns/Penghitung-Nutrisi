@@ -8,5 +8,7 @@ Program ini adalah penghitung nutrisi makanan berbasis desktop yang membantu pen
 # Fitur Aplikasi
 1. Data makanan yang akan dihitung nurisinya
 2. penambah data makanan baru
+
 3. kalkulator nutrisi
-# flowchart program 
+# diagram alir
+![Flowchart penghitung nutrisi](https://github.com/user-attachments/assets/fbc48d67-847a-433d-9de7-0f982f49f652)
