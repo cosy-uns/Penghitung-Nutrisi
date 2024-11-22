@@ -10,5 +10,5 @@ Program ini adalah penghitung nutrisi makanan berbasis desktop yang membantu pen
 2. penambah data makanan baru
 
 3. kalkulator nutrisi
-# diagram alir
-![Flowchart penghitung nutrisi](https://github.com/user-attachments/assets/fbc48d67-847a-433d-9de7-0f982f49f652)
+# Diagram Alir
+![Diagram Tanpa Judul drawio (1)](https://github.com/user-attachments/assets/0f363c2b-b3aa-4fdb-8ea9-0487f8b67410)
