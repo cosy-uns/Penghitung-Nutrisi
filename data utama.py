@@ -97,39 +97,16 @@ class AplikasiNutrisi:
         self.root.title("Kalkulator Nutrisi")
         self.database = DatabaseMakanan()
 
-        # Memuat gambar latar belakang
-        self.gambar_latar = [] # Menyimpan referensi gambar
-        self.gambar_label = [] # Menyimpan label gambar latar belakang
-        # Mengambil ukuran layar penuh
+         # Atur latar belakang jendela menjadi polos
+        self.root.configure(bg="white")  # Anda dapat mengganti 'white' dengan warna lain sesuai keinginan
+        
         lebar_layar = self.root.winfo_screenwidth()
         tinggi_layar = self.root.winfo_screenheight()
-        self.root.geometry(f"{lebar_layar}x{tinggi_layar}")  # Mengatur jendela ke ukuran layar penuh
-        
-        # Menambahkan gambar latar belakang (6 gambar)
-        for i in range(1, 7): # Gambar bernama 1.jpg, 2.jpg, ..., 6.jpg
-          img = Image.open(f"D:/projecta/makanan/{i}.jpg")
-          img = img.resize((lebar_layar // 3, tinggi_layar // 2), Image.Resampling.LANCZOS) # Sesuaikan ukuran
-          img_tk = ImageTk.PhotoImage(img)
-          self.gambar_latar.append(img_tk) # Menyimpan referensi gambar
-            
-          # Menghitung posisi berdasarkan i
-          # Kolom = (i - 1) % 3 (kolom pertama (0), kedua (1), ketiga (2))
-          # Baris = (i - 1) // 3 (baris pertama (0) atau kedua (1))
+        self.root.geometry(f"{lebar_layar}x{tinggi_layar}")
 
-          kolom = (i - 1) % 3  # Menghitung kolom
-          baris = (i - 1) // 3  # Menghitung baris
-           # Menentukan posisi gambar
-          x_pos = kolom * lebar_layar // 3 # Setiap gambar berada di kolom yang berbeda
-          y_pos = baris * tinggi_layar // 2  # Setiap gambar berada di baris yang berbeda
-            
-
-          label = tk.Label(self.root, image=img_tk)
-          label.place(x=x_pos, y=y_pos) # Menempatkan gambar di grid
-          self.gambar_label.append(label)  # Menyimpan label untuk referensi
-           
-
-        self.frame_utama = tk.Frame(self.root)  # Pastikan frame_utama sudah didefinisikan
+        self.frame_utama = tk.Frame(self.root, bg="white")
         self.frame_utama.pack(pady=10)
+       
          # Panggil fungsi `on_closing` saat aplikasi ditutup
         self.root.protocol("WM_DELETE_WINDOW", self.saat_keluar)
         self.tampilkan_menu_utama()
