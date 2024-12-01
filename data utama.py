@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk  # Import ttk untuk Treeview
-from PIL import Image, ImageTk
 import json
 import os
 
