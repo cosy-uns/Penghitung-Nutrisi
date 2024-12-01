@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk  # Import ttk untuk Treeview
-from PIL import Image, ImageTk
 import json
 import os
 
@@ -16,7 +15,7 @@ class DatabaseMakanan:
             with open(self.file_json, 'r') as file:
                 try:
                     data = json.load(file)  
-                    # Pastikan data yang dimuat adalah dictionary
+                    # Pastikan data yang dimuat adalah dictionary.
                     if isinstance(data, dict):
                         self.data_makanan = data
                     else:
