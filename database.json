@@ -14,5 +14,14 @@
             "Protein": 300.0
         },
         "berat": 200.0
+    },
+    "100": {
+        "nutrisi": {
+            "Karbohidrat": 30.0,
+            "Lemak": 40.0,
+            "Protein": 50.0,
+            "Kalori": 60.0
+        },
+        "berat": 20.0
     }
 }
