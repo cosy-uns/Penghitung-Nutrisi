@@ -7,7 +7,7 @@ import os
 class DatabaseMakanan:
     def __init__(self, file_json='./database.json'):
         self.file_json = file_json
-        self.data_makanan = {}  # Inisialisasi sebagai dictionary kosong
+        self.data_makanan = {}  
         self.ambil_data()
 
     def ambil_data(self):
