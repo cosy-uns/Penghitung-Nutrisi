@@ -214,8 +214,8 @@ class AplikasiNutrisi:
         def go_sort():
             self.tampilkan_urutan_makanan()
 
-        tk.Button(self.frame_utama, text="Urutkan Berdasarkan Nutrisi", command=go_sort, width=20).pack(pady=5)
-        tk.Button(self.frame_utama, text="Kembali ke Menu Utama", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
+        tk.Button(self.frame_utama, text="Urutkan Berdasarkan Nutrisi", font=("Arial", 15), bg= "#dd9871", fg= "black", command=go_sort, width=25).pack(pady=5)
+        tk.Button(self.frame_utama, text="Kembali ke Menu Utama", font=("Arial", 15), bg= "#dd9871", fg= "black", command=self.tampilkan_menu_utama, width=25).pack(pady=5)
 
     def hitung_nutrisi_interface(self):
         self.bersihkan_frame()
@@ -294,8 +294,8 @@ class AplikasiNutrisi:
             else:
                  tampilan_tabel.insert("", "end", values=("Tidak ada data", ""))
 
-        tk.Button(self.frame_utama, text="Urutkan", command=urutkan_makanan, width=20).pack(pady=10)
-        tk.Button(self.frame_utama, text="Kembali ke Menu Utama", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
+        tk.Button(self.frame_utama, text="Urutkan", font=("Arial", 15), bg= "#dd9871", fg= "black", command=urutkan_makanan, width=20).pack(pady=10)
+        tk.Button(self.frame_utama, text="Kembali ke Menu Utama", font=("Arial", 15), bg= "#dd9871", fg= "black", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
         
 if __name__ == "__main__":
     root = tk.Tk()
