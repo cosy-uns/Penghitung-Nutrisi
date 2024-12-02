@@ -95,8 +95,8 @@ class AplikasiNutrisi:
         self.label_latar.place(relwidth=1, relheight=1)
 
         # Frame utama tanpa latar belakang, cukup menggunakan gambar latar belakang
-        self.frame_utama = tk.Frame(self.jendela)  # Pastikan frame_utama sudah didefinisikan
-        self.frame_utama.place(relx=0.5, rely=0.23, anchor="center")  # Menempatkan frame di tengah jendela
+        self.frame_utama = tk.Frame(self.jendela, bg= "#f6efe4")  # Pastikan frame_utama sudah didefinisikan
+        self.frame_utama.place(relx=0.5, rely=0.4, anchor="center")  # Menempatkan frame di tengah jendela
         
         # Panggil fungsi `on_closing` saat aplikasi ditutup
         self.jendela.protocol("WM_DELETE_WINDOW", self.tutup_aplikasi)
@@ -114,39 +114,40 @@ class AplikasiNutrisi:
     def tampilkan_menu_utama(self):
         self.bersihkan_frame()
 
-        tk.Label(self.frame_utama, text="Pilih Menu", font=("Arial", 25)).pack(pady=10)
-        tk.Button(self.frame_utama, text="Tambah Makanan", command=self.tambah_makanan_interface, width=30, height=5).pack(pady=5)
-        tk.Button(self.frame_utama, text="Lihat & Urutkan Makanan", command=self.lihat_makanan, width=30, height=5).pack(pady=5)
-        tk.Button(self.frame_utama, text="Hitung Nutrisi & Kalori", command=self.hitung_nutrisi_interface, width=30, height=5).pack(pady=5)
-        tk.Button(self.frame_utama, text="Keluar", command=self.jendela.quit, width=30, height=5).pack(pady=5)  
+        tk.Label(self.frame_utama, text="Pilih Menu", font=("Arial", 25), bg= "#f6efe4", fg= "black").pack(pady=10)
+        tk.Button(self.frame_utama, text="Tambah Makanan", font=("Arial", 15), bg= "#dd9871", fg= "black", command=self.tambah_makanan_interface, width=25, height=2).pack(pady=5)
+        tk.Button(self.frame_utama, text="Lihat & Urutkan Makanan", font=("Arial", 15), bg= "#dd9871", fg= "black", command=self.lihat_makanan, width=25, height=2).pack(pady=5)
+        tk.Button(self.frame_utama, text="Hitung Nutrisi & Kalori", font=("Arial", 15), bg= "#dd9871", fg= "black", command=self.hitung_nutrisi_interface, width=25, height=2).pack(pady=5)
+        tk.Button(self.frame_utama, text="Keluar", font=("Arial", 15), bg= "#dd9871", fg= "black", command=self.jendela.quit, width=25, height=2).pack(pady=5)  
 
    
     def tambah_makanan_interface(self):
         self.bersihkan_frame()
 
-        tk.Label(self.frame_utama, text="Tambah Makanan Baru", font=("Arial", 16)).pack(pady=10)
+        tk.Label(self.frame_utama, text="Tambah Makanan Baru", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack(pady=10)
+        self.frame_utama.place(relx=0.5, rely=0.45, anchor="center")  # Menempatkan frame di tengah jendela
 
-        tk.Label(self.frame_utama, text="Nama Makanan:").pack()
+        tk.Label(self.frame_utama, text="Nama Makanan:", font=("Arial", 10), bg= "#f6efe4", fg= "black").pack()
         entri_nama = tk.Entry(self.frame_utama)
         entri_nama.pack()
 
-        tk.Label(self.frame_utama, text="Berat Makanan (gram):").pack()
+        tk.Label(self.frame_utama, text="Berat Makanan (gram):", font=("Arial", 10), bg= "#f6efe4", fg= "black").pack()
         entri_berat = tk.Entry(self.frame_utama)
         entri_berat.pack()
 
-        tk.Label(self.frame_utama, text="Karbohidrat (g pada berat tersebut):").pack()
+        tk.Label(self.frame_utama, text="Karbohidrat (g pada berat tersebut):", font=("Arial", 10), bg= "#f6efe4", fg= "black").pack()
         entri_karbohidrat = tk.Entry(self.frame_utama)
         entri_karbohidrat.pack()
 
-        tk.Label(self.frame_utama, text="Lemak (g pada berat tersebut):").pack()
+        tk.Label(self.frame_utama, text="Lemak (g pada berat tersebut):", font=("Arial", 10), bg= "#f6efe4", fg= "black").pack()
         entri_lemak = tk.Entry(self.frame_utama)
         entri_lemak.pack()
 
-        tk.Label(self.frame_utama, text="Protein (g pada berat tersebut):").pack()
+        tk.Label(self.frame_utama, text="Protein (g pada berat tersebut):", font=("Arial", 10), bg= "#f6efe4", fg= "black").pack()
         entri_protein = tk.Entry(self.frame_utama)
         entri_protein.pack()
         
-        tk.Label(self.frame_utama, text="kalori (kkal pada berat tersebut):").pack()
+        tk.Label(self.frame_utama, text="Kalori (kkal pada berat tersebut):", font=("Arial", 10), bg= "#f6efe4", fg= "black").pack()
         entri_kalori = tk.Entry(self.frame_utama)
         entri_kalori.pack()
 
@@ -176,13 +177,13 @@ class AplikasiNutrisi:
         label_hasil = tk.Label(self.frame_utama, text="")
         label_hasil.pack(pady=10)
 
-        tk.Button(self.frame_utama, text="Tambahkan", command=tambah_makanan, width=20).pack(pady=10)
-        tk.Button(self.frame_utama, text="Kembali", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
+        tk.Button(self.frame_utama, text="Tambahkan", font=("Arial", 15), bg= "#dd9871", fg= "black", command=tambah_makanan, width=15).pack(pady=10)
+        tk.Button(self.frame_utama, text="Kembali", font=("Arial", 15), bg= "#dd9871", fg= "black", command=self.tampilkan_menu_utama, width=15).pack(pady=5)
 
     def lihat_makanan(self):
         self.bersihkan_frame()
 
-        tk.Label(self.frame_utama, text="Data Makanan Saat Ini", font=("Arial", 16)).pack(pady=10)
+        tk.Label(self.frame_utama, text="Data Makanan Saat Ini", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack(pady=10)
         if self.database.data_makanan:
             tree = ttk.Treeview(self.frame_utama, columns=("Nama", "Berat", "Karbohidrat", "Lemak", "Protein","Kalori"), show="headings")
             tree.heading("Nama", text="Nama Makanan")
@@ -217,20 +218,20 @@ class AplikasiNutrisi:
     def hitung_nutrisi_interface(self):
         self.bersihkan_frame()
 
-        tk.Label(self.frame_utama, text="Hitung Jumlah Nutrisi", font=("Arial", 16)).pack(pady=10)
+        tk.Label(self.frame_utama, text="Hitung Jumlah Nutrisi", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack(pady=10)
 
         nama_makanan = self.database.ambil_nama_makanan()
         if not nama_makanan:
-            tk.Label(self.frame_utama, text="Data makanan kosong. Tambahkan makanan terlebih dahulu.").pack()
-            tk.Button(self.frame_utama, text="Kembali", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
+            tk.Label(self.frame_utama, text="Data makanan kosong. Tambahkan makanan terlebih dahulu.", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack()
+            tk.Button(self.frame_utama, text="Kembali", font=("Arial", 16), bg= "#f6efe4", fg= "black", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
             return
 
-        tk.Label(self.frame_utama, text="Pilih Makanan:").pack()
+        tk.Label(self.frame_utama, text="Pilih Makanan:", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack()
         pilihan_makanan = tk.StringVar(self.frame_utama)
         pilihan_makanan.set(nama_makanan[0])
         tk.OptionMenu(self.frame_utama, pilihan_makanan, *nama_makanan).pack()
 
-        tk.Label(self.frame_utama, text="Berat (gram):").pack()
+        tk.Label(self.frame_utama, text="Berat (gram):", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack()
         entri_berat = tk.Entry(self.frame_utama)
         entri_berat.pack()
 
@@ -252,15 +253,15 @@ class AplikasiNutrisi:
             except ValueError:
                 label_hasil.config(text="Kesalahan: Berat harus berupa angka.")
 
-        tk.Button(self.frame_utama, text="Hitung", command=hitung, width=20).pack(pady=10)
-        tk.Button(self.frame_utama, text="Kembali ke Menu Utama", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
+        tk.Button(self.frame_utama, text="Hitung", font=("Arial", 16), bg= "#dd9871", fg= "black", command=hitung, width=20).pack(pady=10)
+        tk.Button(self.frame_utama, text="Kembali ke Menu Utama", font=("Arial", 16), bg= "#dd9871", fg= "black", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
 
     def tampilkan_urutan_makanan(self):
         self.bersihkan_frame()
 
-        tk.Label(self.frame_utama, text="Urutkan Berdasarkan Nutrisi (per 100 gram)", font=("Arial", 16)).pack(pady=10)
+        tk.Label(self.frame_utama, text="Urutkan Berdasarkan Nutrisi (per 100 gram)", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack(pady=10)
 
-        tk.Label(self.frame_utama, text="Pilih Nutrisi yang ingin diurutkan").pack()
+        tk.Label(self.frame_utama, text="Pilih Nutrisi yang ingin diurutkan", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack()
         pilihan_nutrisi = tk.StringVar(self.frame_utama)
         pilihan_nutrisi.set("Karbohidrat")
         tk.OptionMenu(self.frame_utama, pilihan_nutrisi, "Karbohidrat", "Lemak", "Protein", "Kalori").pack()
