@@ -94,13 +94,10 @@ class AplikasiNutrisi:
         self.label_latar = tk.Label(self.jendela, image=self.foto_latar)
         self.label_latar.place(relwidth=1, relheight=1)
 
-        # Frame utama di atas latar belakang
-        self.bingkai_utama = tk.Frame(self.jendela, bg="white", relief="solid", bd=2)
-        self.bingkai_utama.place(relx=0.5, rely=0.5, anchor="center")
-
-        # Atur event saat jendela ditutup
-        self.jendela.protocol("WM_DELETE_WINDOW", self.tutup_aplikasi)
-
+        self.frame_utama = tk.Frame(self.root)  # Pastikan frame_utama sudah didefinisikan
+        self.frame_utama.pack(pady=10)
+         # Panggil fungsi `on_closing` saat aplikasi ditutup
+        self.root.protocol("WM_DELETE_WINDOW", self.saat_keluar)
         self.tampilkan_menu_utama()
         
     def tutup_aplikasi(self):
