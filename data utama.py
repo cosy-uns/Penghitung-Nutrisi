@@ -79,7 +79,7 @@ class AplikasiNutrisi:
     def __init__(self, jendela):
         self.jendela = jendela
         self.jendela.title("Kalkulator Nutrisi")
-        self.database= DatabaseMakanan()
+        self.database = DatabaseMakanan()
 
         # Atur ukuran jendela
         lebar_jendela = self.jendela.winfo_screenwidth()
@@ -94,12 +94,14 @@ class AplikasiNutrisi:
         self.label_latar = tk.Label(self.jendela, image=self.foto_latar)
         self.label_latar.place(relwidth=1, relheight=1)
 
-        self.frame_utama = tk.Frame(self.root)  # Pastikan frame_utama sudah didefinisikan
-        self.frame_utama.pack(pady=10)
-         # Panggil fungsi `on_closing` saat aplikasi ditutup
-        self.root.protocol("WM_DELETE_WINDOW", self.saat_keluar)
-        self.tampilkan_menu_utama()
+        # Frame utama tanpa latar belakang, cukup menggunakan gambar latar belakang
+        self.frame_utama = tk.Frame(self.jendela)  # Pastikan frame_utama sudah didefinisikan
+        self.frame_utama.place(relx=0.5, rely=0.23, anchor="center")  # Menempatkan frame di tengah jendela
         
+        # Panggil fungsi `on_closing` saat aplikasi ditutup
+        self.jendela.protocol("WM_DELETE_WINDOW", self.tutup_aplikasi)
+        self.tampilkan_menu_utama()
+
     def tutup_aplikasi(self):
         """Simpan data saat aplikasi ditutup."""
         self.database.simpan_data()
@@ -117,6 +119,8 @@ class AplikasiNutrisi:
         tk.Button(self.frame_utama, text="Lihat & Urutkan Makanan", command=self.lihat_makanan, width=20, height=2).pack(pady=5)
         tk.Button(self.frame_utama, text="Hitung Nutrisi & Kalori", command=self.hitung_nutrisi_interface, width=20, height=2).pack(pady=5)
         tk.Button(self.frame_utama, text="Keluar", command=self.jendela.quit, width=20, height=2).pack(pady=5)
+
+   
     def tambah_makanan_interface(self):
         self.bersihkan_frame()
 
