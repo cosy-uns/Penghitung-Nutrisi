@@ -87,7 +87,7 @@ class AplikasiNutrisi:
         self.jendela.geometry(f"{lebar_jendela}x{tinggi_jendela}")
 
         # Muat gambar latar belakang
-        self.gambar_latar = Image.open("by Kelompok 15.png").resize((lebar_jendela, tinggi_jendela))
+        self.gambar_latar = Image.open("bg Kelompok 15.png").resize((lebar_jendela, tinggi_jendela))
         self.foto_latar = ImageTk.PhotoImage(self.gambar_latar)
         
         # Label untuk latar belakang
