@@ -73,17 +73,12 @@ class DatabaseMakanan:
             key=lambda item: nutrisi_per_100g(item[0]),
             reverse=True
         )
-        
-        
-class AplikasiNutrisi:
-    import tkinter as tk
-from PIL import Image, ImageTk
-
+  
 class AplikasiNutrisi:
     def __init__(self, jendela):
         self.jendela = jendela
         self.jendela.title("Kalkulator Nutrisi")
-        self.database_makanan = DatabaseMakanan()
+        self.database= DatabaseMakanan()
 
         # Atur ukuran jendela
         lebar_jendela = self.jendela.winfo_screenwidth()
@@ -107,10 +102,10 @@ class AplikasiNutrisi:
 
         self.tampilkan_menu_utama()
         
-    def saat_keluar(self):
+    def tutup_aplikasi(self):
         """Simpan data saat aplikasi ditutup."""
         self.database.simpan_data()
-        self.root.destroy()
+        self.jendela.destroy()
 
     def bersihkan_frame(self):
         for widget in self.frame_utama.winfo_children():
@@ -123,7 +118,7 @@ class AplikasiNutrisi:
         tk.Button(self.frame_utama, text="Tambah Makanan", command=self.tambah_makanan_interface, width=20, height=2).pack(pady=5)
         tk.Button(self.frame_utama, text="Lihat & Urutkan Makanan", command=self.lihat_makanan, width=20, height=2).pack(pady=5)
         tk.Button(self.frame_utama, text="Hitung Nutrisi & Kalori", command=self.hitung_nutrisi_interface, width=20, height=2).pack(pady=5)
-        tk.Button(self.frame_utama, text="Keluar", command=self.root.quit, width=20, height=2).pack(pady=5)
+        tk.Button(self.frame_utama, text="Keluar", command=self.jendela.quit, width=20, height=2).pack(pady=5)
     def tambah_makanan_interface(self):
         self.bersihkan_frame()
 
@@ -245,7 +240,6 @@ class AplikasiNutrisi:
             try:
                 berat = float(entri_berat.get())
                 nutrisi_dihitung = self.database.hitung_nutrisi_makanan(makanan_dipilih, berat)
-                kalori_dihitung = self.database.hitung_kalori(makanan_dipilih, berat)
 
                 hasil = f"Nutrisi pada {berat} gram {makanan_dipilih}:\n"
                 hasil += f"Karbohidrat: {nutrisi_dihitung.get('Karbohidrat', 0):.2f}g\n"
