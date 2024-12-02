@@ -81,7 +81,7 @@ class AplikasiNutrisi:
         self.jendela.title("Kalkulator Nutrisi")
         self.database = DatabaseMakanan()
 
-        # Atur ukuran jendela
+        # Atur ukuran jendela biar pas
         lebar_jendela = self.jendela.winfo_screenwidth()
         tinggi_jendela = self.jendela.winfo_screenheight()
         self.jendela.geometry(f"{lebar_jendela}x{tinggi_jendela}")
@@ -124,7 +124,7 @@ class AplikasiNutrisi:
         tk.Button(self.frame_utama, text="Tambah Makanan", command=self.tambah_makanan_interface, width=30, height=5).pack(pady=5)
         tk.Button(self.frame_utama, text="Lihat & Urutkan Makanan", command=self.lihat_makanan, width=30, height=5).pack(pady=5)
         tk.Button(self.frame_utama, text="Hitung Nutrisi & Kalori", command=self.hitung_nutrisi_interface, width=30, height=5).pack(pady=5)
-        tk.Button(self.frame_utama, text="Keluar", command=self.jendela.quit, width=30, height=5).pack(pady=5)
+        tk.Button(self.frame_utama, text="Keluar", command=self.jendela.quit, width=30, height=5).pack(pady=5)  
 
    
     def tambah_makanan_interface(self):
