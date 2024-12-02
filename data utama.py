@@ -82,9 +82,11 @@ class AplikasiNutrisi:
         self.database = DatabaseMakanan()
 
         # Atur ukuran jendela biar pas
-        lebar_jendela = self.jendela.winfo_screenwidth()
-        tinggi_jendela = self.jendela.winfo_screenheight()
-        self.jendela.geometry(f"{lebar_jendela}x{tinggi_jendela}")
+        # Menyesuaikan ukuran jendela dengan margin
+        lebar_jendela = int(self.jendela.winfo_screenwidth() * 1)  # 90% dari lebar layar
+        tinggi_jendela = int(self.jendela.winfo_screenheight() * 1)  # 90% dari tinggi layar
+        self.jendela.geometry(f"{lebar_jendela}x{tinggi_jendela}+{int((self.jendela.winfo_screenwidth() - lebar_jendela) / 2)}+{int((self.jendela.winfo_screenheight() - tinggi_jendela) / 2)}")
+
 
         # Muat gambar latar belakang
         self.gambar_latar = Image.open("bg Kelompok 15.png").resize((lebar_jendela, tinggi_jendela))
