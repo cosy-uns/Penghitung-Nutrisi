@@ -97,13 +97,8 @@ class AplikasiNutrisi:
         self.label_latar.place(relwidth=1, relheight=1)
 
         # Frame utama tanpa latar belakang, cukup menggunakan gambar latar belakang
-<<<<<<< HEAD
-        self.frame_utama = tk.Frame(self.jendela)  # Pastikan frame_utama sudah didefinisikan
-        self.frame_utama.place(relx=0.5, rely=0.5, anchor="center")  # Menempatkan frame di tengah jendela
-=======
         self.frame_utama = tk.Frame(self.jendela, bg= "#f6efe4")  # Pastikan frame_utama sudah didefinisikan
         self.frame_utama.place(relx=0.5, rely=0.4, anchor="center")  # Menempatkan frame di tengah jendela
->>>>>>> 8a4a65ec8883a4028b81a0a6d905b5bbc79c54ad
         
         # Panggil fungsi `on_closing` saat aplikasi ditutup
         self.jendela.protocol("WM_DELETE_WINDOW", self.tutup_aplikasi)
