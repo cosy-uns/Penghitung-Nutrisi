@@ -114,11 +114,11 @@ class AplikasiNutrisi:
     def tampilkan_menu_utama(self):
         self.bersihkan_frame()
 
-        tk.Label(self.frame_utama, text="Pilih Menu", font=("Arial", 16)).pack(pady=10)
-        tk.Button(self.frame_utama, text="Tambah Makanan", command=self.tambah_makanan_interface, width=20, height=2).pack(pady=5)
-        tk.Button(self.frame_utama, text="Lihat & Urutkan Makanan", command=self.lihat_makanan, width=20, height=2).pack(pady=5)
-        tk.Button(self.frame_utama, text="Hitung Nutrisi & Kalori", command=self.hitung_nutrisi_interface, width=20, height=2).pack(pady=5)
-        tk.Button(self.frame_utama, text="Keluar", command=self.jendela.quit, width=20, height=2).pack(pady=5)
+        tk.Label(self.frame_utama, text="Pilih Menu", font=("Arial", 25)).pack(pady=10)
+        tk.Button(self.frame_utama, text="Tambah Makanan", command=self.tambah_makanan_interface, width=30, height=5).pack(pady=5)
+        tk.Button(self.frame_utama, text="Lihat & Urutkan Makanan", command=self.lihat_makanan, width=30, height=5).pack(pady=5)
+        tk.Button(self.frame_utama, text="Hitung Nutrisi & Kalori", command=self.hitung_nutrisi_interface, width=30, height=5).pack(pady=5)
+        tk.Button(self.frame_utama, text="Keluar", command=self.jendela.quit, width=30, height=5).pack(pady=5)
 
    
     def tambah_makanan_interface(self):
@@ -192,18 +192,18 @@ class AplikasiNutrisi:
             tree.heading("Protein", text="Protein (g)")
             tree.heading("Kalori", text="kalori (kkal)")
 
-            tree.column("Nama", anchor="w", width=200)
+            tree.column("Nama", anchor="center", width=200)
             tree.column("Berat", anchor="center", width=100)
             tree.column("Karbohidrat", anchor="center", width=120)
             tree.column("Lemak", anchor="center", width=100)
             tree.column("Protein", anchor="center", width=100)
             tree.column("Kalori", anchor="center", width=100)
 
-
             for makanan, data in self.database.data_makanan.items():
                 nutrisi = data["nutrisi"]
                 berat = data["berat"]
-                tree.insert("", "end", values=(makanan, berat, nutrisi['Karbohidrat'], nutrisi['Lemak'], nutrisi['Protein'], nutrisi["Kalori"]))
+            tree.insert("", "end", values=(makanan,berat, nutrisi.get("Karbohidrat", 0), nutrisi.get("Lemak", 0),nutrisi.get("Protein", 0),nutrisi.get("Kalori", 0)))
+
 
             tree.pack(pady=10, fill="both", expand=True)
         else:
