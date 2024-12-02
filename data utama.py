@@ -81,7 +81,7 @@ class AplikasiNutrisi:
         self.jendela.title("Kalkulator Nutrisi")
         self.database = DatabaseMakanan()
 
-        # Atur ukuran jendela
+        # Atur ukuran jendela biar pas
         lebar_jendela = self.jendela.winfo_screenwidth()
         tinggi_jendela = self.jendela.winfo_screenheight()
         self.jendela.geometry(f"{lebar_jendela}x{tinggi_jendela}")
