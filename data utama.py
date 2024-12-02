@@ -95,8 +95,8 @@ class AplikasiNutrisi:
         self.label_latar.place(relwidth=1, relheight=1)
 
         # Frame utama tanpa latar belakang, cukup menggunakan gambar latar belakang
-        self.frame_utama = tk.Frame(self.jendela, bg= "#f6efe4")  # Pastikan frame_utama sudah didefinisikan
-        self.frame_utama.place(relx=0.5, rely=0.3, anchor="center")  # Menempatkan frame di tengah jendela
+        self.frame_utama = tk.Frame(self.jendela)  # Pastikan frame_utama sudah didefinisikan
+        self.frame_utama.place(relx=0.5, rely=0.23, anchor="center")  # Menempatkan frame di tengah jendela
         
         # Panggil fungsi `on_closing` saat aplikasi ditutup
         self.jendela.protocol("WM_DELETE_WINDOW", self.tutup_aplikasi)
@@ -114,12 +114,6 @@ class AplikasiNutrisi:
     def tampilkan_menu_utama(self):
         self.bersihkan_frame()
 
-        tk.Label(self.frame_utama, text="Pilih Menu", font=("Arial", 16), bg= "#f6efe4").pack(pady=10)
-        tk.Button(self.frame_utama, text="Tambah Makanan", font=("Arial", 10), bg= "#dd9871", command=self.tambah_makanan_interface, width=20, height=2).pack(pady=5)
-        tk.Button(self.frame_utama, text="Lihat & Urutkan Makanan", font=("Arial", 10), bg= "#dd9871", command=self.lihat_makanan, width=20, height=2).pack(pady=5)
-        tk.Button(self.frame_utama, text="Hitung Nutrisi & Kalori", font=("Arial", 10), bg= "#dd9871", command=self.hitung_nutrisi_interface, width=20, height=2).pack(pady=5)
-        tk.Button(self.frame_utama, text="Keluar", font=("Arial", 10), bg= "#dd9871", command=self.jendela.quit, width=20, height=2).pack(pady=5)
-
         tk.Label(self.frame_utama, text="Pilih Menu", font=("Arial", 25)).pack(pady=10)
         tk.Button(self.frame_utama, text="Tambah Makanan", command=self.tambah_makanan_interface, width=30, height=5).pack(pady=5)
         tk.Button(self.frame_utama, text="Lihat & Urutkan Makanan", command=self.lihat_makanan, width=30, height=5).pack(pady=5)
@@ -130,7 +124,7 @@ class AplikasiNutrisi:
     def tambah_makanan_interface(self):
         self.bersihkan_frame()
 
-        tk.Label(self.frame_utama, text="Tambah Makanan Baru", font=("Arial", 16), bg= "#f6efe4").pack(pady=10)
+        tk.Label(self.frame_utama, text="Tambah Makanan Baru", font=("Arial", 16)).pack(pady=10)
 
         tk.Label(self.frame_utama, text="Nama Makanan:").pack()
         entri_nama = tk.Entry(self.frame_utama)
