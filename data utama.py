@@ -261,32 +261,39 @@ class AplikasiNutrisi:
     def tampilkan_urutan_makanan(self):
         self.bersihkan_frame()
 
-        tk.Label(self.frame_utama, text="Urutkan Berdasarkan Nutrisi (per 100 gram)", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack(pady=10)
+        tk.Label(self.frame_utama, text="Urutkan Berdasarkan Nutrisi (per 100 gram)", font=("Arial", 16), bg="#f6efe4", fg="black").pack(pady=10)
 
-        tk.Label(self.frame_utama, text="Pilih Nutrisi yang ingin diurutkan", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack()
+        tk.Label(self.frame_utama, text="Pilih Nutrisi yang ingin diurutkan", font=("Arial", 16), bg="#f6efe4", fg="black").pack()
         pilihan_nutrisi = tk.StringVar(self.frame_utama)
         pilihan_nutrisi.set("Karbohidrat")
         tk.OptionMenu(self.frame_utama, pilihan_nutrisi, "Karbohidrat", "Lemak", "Protein", "Kalori").pack()
-        
-        label_hasil = tk.Label(self.frame_utama, text="")
-        label_hasil.pack(pady=10)
+
+        # Treeview untuk menampilkan tabel
+        tampilan_tabel = ttk.Treeview(self.frame_utama, columns=("Nama", "Nutrisi per 100g"), show="headings")
+        tampilan_tabel.heading("Nama", text="Nama Makanan")
+        tampilan_tabel.heading("Nutrisi per 100g", text=f"{pilihan_nutrisi.get()} (per 100g)")
+
+        tampilan_tabel.column("Nama", anchor="center", width=200)
+        tampilan_tabel.column("Nutrisi per 100g", anchor="center", width=150)
+        tampilan_tabel.pack(pady=10, fill="both", expand=True)
 
         def urutkan_makanan():
-            nutrisi = pilihan_nutrisi.get()  # Mengambil nilai dari pilihan_nutrisi
-            makanan_terurut = self.database.urutkan_makanan_berdasarkan_nutrisi(nutrisi)  # Memanggil fungsi yang benar
+            nutrisi = pilihan_nutrisi.get()
+            makanan_terurut = self.database.urutkan_makanan_berdasarkan_nutrisi(nutrisi)
+
+            # Hapus semua data di Treeview sebelum menambahkan data baru
+            for item in tampilan_tabel.get_children():
+                tampilan_tabel.delete(item)
 
             if makanan_terurut:
-               hasil = f"Daftar makanan berdasarkan {nutrisi} (per 100 gram):\n"
-               for makanan, data in makanan_terurut:
-                   berat = data["berat"]
-                   nutrisi_data = data["nutrisi"]
-                   nilai = (nutrisi_data.get(nutrisi, 0) * 100) / berat
-                   hasil += f"{makanan}: {nilai:.2f} {nutrisi.lower()} per 100g\n"
-               label_hasil.config(text=hasil)
+                for makanan, data in makanan_terurut:
+                    berat = data["berat"]
+                    nutrisi_data = data["nutrisi"]
+                    nilai = (nutrisi_data.get(nutrisi, 0) * 100) / berat
+                    tampilan_tabel.insert("", "end", values=(makanan, f"{nilai:.2f} {nutrisi.lower()}"))
             else:
-               label_hasil.config(text="Tidak ada data untuk diurutkan.")
- 
-   
+                 tampilan_tabel.insert("", "end", values=("Tidak ada data", ""))
+
         tk.Button(self.frame_utama, text="Urutkan", command=urutkan_makanan, width=20).pack(pady=10)
         tk.Button(self.frame_utama, text="Kembali ke Menu Utama", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
         
