@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk  # Import ttk untuk Treeview
+from PIL import Image, ImageTk
 import json
 import os
 
@@ -86,7 +87,7 @@ class AplikasiNutrisi:
         self.jendela.geometry(f"{lebar_jendela}x{tinggi_jendela}")
 
         # Muat gambar latar belakang
-        self.gambar_latar = Image.open("by kelompok 15.png").resize((lebar_jendela, tinggi_jendela))
+        self.gambar_latar = Image.open("by Kelompok 15.png").resize((lebar_jendela, tinggi_jendela))
         self.foto_latar = ImageTk.PhotoImage(self.gambar_latar)
         
         # Label untuk latar belakang
