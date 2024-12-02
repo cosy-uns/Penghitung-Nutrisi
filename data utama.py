@@ -156,20 +156,19 @@ class AplikasiNutrisi:
                 nutrisi = {
                     "Karbohidrat": karbohidrat,
                     "Lemak": lemak,
-                    "Protein": protein
+                    "Protein": protein,
                     "Kalori" : kalori
                 }
                 self.database.tambah_makanan(nama, nutrisi, berat)
                 label_hasil.config(text=f"{nama} berhasil ditambahkan.")
             except ValueError:
-                label_error.config(text="Kesalahan: Input harus berupa angka.")
+                label_error.config(text="Kesalahan,input dengan benar.")
 
         label_hasil = tk.Label(self.frame_utama, text="")
         label_hasil.pack(pady=10)
 
         tk.Button(self.frame_utama, text="Tambahkan", command=tambah_makanan, width=20).pack(pady=10)
         tk.Button(self.frame_utama, text="Kembali", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
-  
 
     def lihat_makanan(self):
         self.bersihkan_frame()
