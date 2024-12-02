@@ -1,20 +1,4 @@
 {
-    "ayam": {
-        "nutrisi": {
-            "Karbohidrat": 100.0,
-            "Lemak": 200.0,
-            "Protein": 200.0
-        },
-        "berat": 200.0
-    },
-    "hdajkad": {
-        "nutrisi": {
-            "Karbohidrat": 300.0,
-            "Lemak": 200.0,
-            "Protein": 300.0
-        },
-        "berat": 200.0
-    },
     "100": {
         "nutrisi": {
             "Karbohidrat": 30.0,
