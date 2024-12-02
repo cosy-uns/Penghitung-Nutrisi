@@ -1,1 +1,29 @@
-{}
+{
+    "mie instan": {
+        "nutrisi": {
+            "Karbohidrat": 25.0,
+            "Lemak": 2.1,
+            "Protein": 4.5,
+            "Kalori": 138.0
+        },
+        "berat": 100.0
+    },
+    "daging ayam": {
+        "nutrisi": {
+            "Karbohidrat": 0.0,
+            "Lemak": 14.0,
+            "Protein": 27.0,
+            "Kalori": 239.0
+        },
+        "berat": 100.0
+    },
+    "bakso daging sapi": {
+        "nutrisi": {
+            "Karbohidrat": 7.58,
+            "Lemak": 13.16,
+            "Protein": 12.41,
+            "Kalori": 202.0
+        },
+        "berat": 100.0
+    }
+}

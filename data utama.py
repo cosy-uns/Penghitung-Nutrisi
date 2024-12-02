@@ -185,16 +185,25 @@ class AplikasiNutrisi:
     def lihat_makanan(self):
         self.bersihkan_frame()
 
-        tk.Label(self.frame_utama, text="Data Makanan Saat Ini", font=("Arial", 16), bg= "#f6efe4", fg= "black").pack(pady=10)
+        tk.Label(self.frame_utama, text="Data Makanan Saat Ini", font=("Arial", 16), bg="#f6efe4", fg="black").pack(pady=10)
+    
         if self.database.data_makanan:
-            tree = ttk.Treeview(self.frame_utama, columns=("Nama", "Berat", "Karbohidrat", "Lemak", "Protein","Kalori"), show="headings")
+            # Membuat Treeview
+            tree = ttk.Treeview(
+                self.frame_utama, 
+                columns=("Nama", "Berat", "Karbohidrat", "Lemak", "Protein", "Kalori"), 
+                show="headings"
+            )
+        
+            # Menentukan heading
             tree.heading("Nama", text="Nama Makanan")
             tree.heading("Berat", text="Berat (gram)")
             tree.heading("Karbohidrat", text="Karbohidrat (g)")
             tree.heading("Lemak", text="Lemak (g)")
             tree.heading("Protein", text="Protein (g)")
-            tree.heading("Kalori", text="kalori (kkal)")
+            tree.heading("Kalori", text="Kalori (kkal)")
 
+            # Menentukan lebar kolom dan perataan
             tree.column("Nama", anchor="center", width=200)
             tree.column("Berat", anchor="center", width=100)
             tree.column("Karbohidrat", anchor="center", width=120)
@@ -202,20 +211,25 @@ class AplikasiNutrisi:
             tree.column("Protein", anchor="center", width=100)
             tree.column("Kalori", anchor="center", width=100)
 
+            # Mengosongkan isi Treeview sebelumnya
+            for i in tree.get_children():
+                tree.delete(i)
+
+            # Mengisi Treeview dengan data makanan
             for makanan, data in self.database.data_makanan.items():
                 nutrisi = data["nutrisi"]
                 berat = data["berat"]
-            tree.insert("", "end", values=(makanan,berat, nutrisi.get("Karbohidrat", 0), nutrisi.get("Lemak", 0),nutrisi.get("Protein", 0),nutrisi.get("Kalori", 0)))
-
+                tree.insert("", "end", values=(makanan,berat, nutrisi.get("Karbohidrat", 0), nutrisi.get("Lemak", 0), nutrisi.get("Protein"),nutrisi.get("Kalori", 0) ) )
 
             tree.pack(pady=10, fill="both", expand=True)
         else:
             tk.Label(self.frame_utama, text="Tidak ada data makanan.").pack()
-        def go_sort():
-            self.tampilkan_urutan_makanan()
 
-        tk.Button(self.frame_utama, text="Urutkan Berdasarkan Nutrisi", font=("Arial", 15), bg= "#dd9871", fg= "black", command=go_sort, width=25).pack(pady=5)
-        tk.Button(self.frame_utama, text="Kembali ke Menu Utama", font=("Arial", 15), bg= "#dd9871", fg= "black", command=self.tampilkan_menu_utama, width=25).pack(pady=5)
+        # Tombol untuk urutan berdasarkan nutrisi
+        tk.Button(self.frame_utama, text="Urutkan Berdasarkan Nutrisi", font=("Arial", 15), bg="#dd9871", fg="black",  command=self.tampilkan_urutan_makanan, width=25).pack(pady=5)
+
+        # Tombol untuk kembali ke menu utama
+        tk.Button(self.frame_utama, text="Kembali ke Menu Utama", font=("Arial", 15), bg="#dd9871", fg="black",  command=self.tampilkan_menu_utama,  width=25).pack(pady=5)
 
     def hitung_nutrisi_interface(self):
         self.bersihkan_frame()
