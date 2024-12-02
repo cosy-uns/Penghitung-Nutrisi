@@ -53,19 +53,10 @@ class DatabaseMakanan:
             return {zat: (jumlah * gram) / berat_makanan for zat, jumlah in nutrisi.items()}
         return {}
 
-    def hitung_kalori(self, nama, gram):
-        """Menghitung kalori berdasarkan kandungan nutrisi dan berat makanan dalam gram."""
-        if nama in self.data_makanan:
-            makanan = self.data_makanan[nama]
-            nutrisi = makanan["nutrisi"]
-            berat_makanan = makanan["berat"] # Berat yang tercatat dalam database
-             # Formula kalori: kalori = (karbohidrat x 4) + (protein x 4) + (lemak x 9)
-            kalori = (nutrisi["Karbohidrat"] * 4 + nutrisi["Protein"] * 4 + nutrisi["Lemak"] * 9) * gram / berat_makanan / 100
-            return round(kalori, 2)
-        return 0
+    
     
     def urutkan_makanan_berdasarkan_nutrisi(self, nutrisi):
-        """Mengembalikan daftar makanan yang diurutkan berdasarkan jumlah nutrisi tertentu (dalam skala 100 gram)."""
+        """Mengembalikan daftar makanan yang diurutkan berdasarkan jumlah nutrisi tertentu."""
         if nutrisi not in ["Karbohidrat", "Lemak", "Protein", "Kalori"]:
             return []
 
@@ -74,14 +65,8 @@ class DatabaseMakanan:
             makanan = self.data_makanan[nama_makanan]
             berat = makanan["berat"]
             nilai_nutrisi = makanan["nutrisi"]
-            
-             # Konversi nutrisi ke skala per 100 gram
-            if nutrisi == "Kalori":
-                return self.hitung_kalori(nama_makanan, 100)
-            else:
-                 # Hitung nilai nutrisi per 100 gram
-                return (nilai_nutrisi.get(nutrisi, 0) * 100) / berat
-            
+            # Konversi nutrisi ke skala per 100 gram
+            return (nilai_nutrisi.get(nutrisi, 0) * 100) / berat
         # Urutkan berdasarkan nilai nutrisi per 100 gram
         return sorted(
             self.data_makanan.items(),
@@ -151,6 +136,10 @@ class AplikasiNutrisi:
         tk.Label(self.frame_utama, text="Protein (g pada berat tersebut):").pack()
         entri_protein = tk.Entry(self.frame_utama)
         entri_protein.pack()
+        
+        tk.Label(self.frame_utama, text="kalori (kkal pada berat tersebut):").pack()
+        entri_kalori = tk.Entry(self.frame_utama)
+        entri_kalori.pack()
 
         label_error = tk.Label(self.frame_utama, text="", fg="red")
         label_error.pack()
@@ -161,12 +150,14 @@ class AplikasiNutrisi:
                 karbohidrat = float(entri_karbohidrat.get())
                 lemak = float(entri_lemak.get())
                 protein = float(entri_protein.get())
+                kalori = float(entri_kalori.get())
                 berat = float(entri_berat.get())
                 
                 nutrisi = {
                     "Karbohidrat": karbohidrat,
-                    "Lemak": berat,
+                    "Lemak": lemak,
                     "Protein": protein
+                    "Kalori" : kalori
                 }
                 self.database.tambah_makanan(nama, nutrisi, berat)
                 label_hasil.config(text=f"{nama} berhasil ditambahkan.")
@@ -185,23 +176,26 @@ class AplikasiNutrisi:
 
         tk.Label(self.frame_utama, text="Data Makanan Saat Ini", font=("Arial", 16)).pack(pady=10)
         if self.database.data_makanan:
-            tree = ttk.Treeview(self.frame_utama, columns=("Nama", "Berat", "Karbohidrat", "Lemak", "Protein"), show="headings")
+            tree = ttk.Treeview(self.frame_utama, columns=("Nama", "Berat", "Karbohidrat", "Lemak", "Protein","Kalori"), show="headings")
             tree.heading("Nama", text="Nama Makanan")
             tree.heading("Berat", text="Berat (gram)")
             tree.heading("Karbohidrat", text="Karbohidrat (g)")
             tree.heading("Lemak", text="Lemak (g)")
             tree.heading("Protein", text="Protein (g)")
+            tree.heading("Kalori", text="kalori (kkal)")
 
             tree.column("Nama", anchor="w", width=200)
             tree.column("Berat", anchor="center", width=100)
             tree.column("Karbohidrat", anchor="center", width=120)
             tree.column("Lemak", anchor="center", width=100)
             tree.column("Protein", anchor="center", width=100)
+            tree.column("Kalori", anchor="center", width=100)
+
 
             for makanan, data in self.database.data_makanan.items():
                 nutrisi = data["nutrisi"]
                 berat = data["berat"]
-                tree.insert("", "end", values=(makanan, berat, nutrisi['Karbohidrat'], nutrisi['Lemak'], nutrisi['Protein']))
+                tree.insert("", "end", values=(makanan, berat, nutrisi['Karbohidrat'], nutrisi['Lemak'], nutrisi['Protein'], nutrisi["Kalori"]))
 
             tree.pack(pady=10, fill="both", expand=True)
         else:
@@ -246,7 +240,7 @@ class AplikasiNutrisi:
                 hasil += f"Karbohidrat: {nutrisi_dihitung.get('Karbohidrat', 0):.2f}g\n"
                 hasil += f"Lemak: {nutrisi_dihitung.get('Lemak', 0):.2f}g\n"
                 hasil += f"Protein: {nutrisi_dihitung.get('Protein', 0):.2f}g\n"
-                hasil += f"Kalori: {kalori_dihitung} kcal"
+                hasil += f"Kalori: {nutrisi_dihitung.get('Kalori', 0):.2f}g\n"
                 label_hasil.config(text=hasil)
             except ValueError:
                 label_hasil.config(text="Kesalahan: Berat harus berupa angka.")
@@ -270,24 +264,21 @@ class AplikasiNutrisi:
         def urutkan_makanan():
             nutrisi = pilihan_nutrisi.get()  # Mengambil nilai dari pilihan_nutrisi
             makanan_terurut = self.database.urutkan_makanan_berdasarkan_nutrisi(nutrisi)  # Memanggil fungsi yang benar
-    
+
             if makanan_terurut:
-                hasil = f"Daftar makanan berdasarkan {nutrisi} (per 100 gram):\n"
-                for makanan, data in makanan_terurut:
-                    berat = data["berat"]
-                    nutrisi_data = data["nutrisi"]
-                    if nutrisi == "Kalori":
-                          nilai = self.database.hitung_kalori(makanan, 100)  # Menggunakan fungsi yang benar
-                    else:
-                         nilai = (nutrisi_data.get(nutrisi, 0) * 100) / berat
-                    hasil += f"{makanan}: {nilai:.2f} {nutrisi.lower()} per 100g\n"
-                label_hasil.config(text=hasil)
+               hasil = f"Daftar makanan berdasarkan {nutrisi} (per 100 gram):\n"
+               for makanan, data in makanan_terurut:
+                   berat = data["berat"]
+                   nutrisi_data = data["nutrisi"]
+                   nilai = (nutrisi_data.get(nutrisi, 0) * 100) / berat
+                   hasil += f"{makanan}: {nilai:.2f} {nutrisi.lower()} per 100g\n"
+               label_hasil.config(text=hasil)
             else:
-                label_hasil.config(text="Tidak ada data untuk diurutkan.")
+               label_hasil.config(text="Tidak ada data untuk diurutkan.")
+ 
    
         tk.Button(self.frame_utama, text="Urutkan", command=urutkan_makanan, width=20).pack(pady=10)
         tk.Button(self.frame_utama, text="Kembali ke Menu Utama", command=self.tampilkan_menu_utama, width=20).pack(pady=5)
-
         
 if __name__ == "__main__":
     root = tk.Tk()
