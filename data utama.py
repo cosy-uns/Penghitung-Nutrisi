@@ -76,33 +76,52 @@ class DatabaseMakanan:
         
         
 class AplikasiNutrisi:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Kalkulator Nutrisi")
-        self.database = DatabaseMakanan()
+    import tkinter as tk
+from PIL import Image, ImageTk
 
-         # Atur latar belakang jendela menjadi polos
-        self.root.configure(bg="white")  # Anda dapat mengganti 'white' dengan warna lain sesuai keinginan
+class AplikasiNutrisi:
+    def __init__(self, jendela):
+        self.jendela = jendela
+        self.jendela.title("Kalkulator Nutrisi")
+        self.database_makanan = DatabaseMakanan()
+
+        # Atur ukuran jendela
+        lebar_jendela = self.jendela.winfo_screenwidth()
+        tinggi_jendela = self.jendela.winfo_screenheight()
+        self.jendela.geometry(f"{lebar_jendela}x{tinggi_jendela}")
+
+        # Muat gambar latar belakang
+        self.gambar_latar = Image.open("by kelompok 15.png").resize((lebar_jendela, tinggi_jendela))
+        self.foto_latar = ImageTk.PhotoImage(self.gambar_latar)
         
-        lebar_layar = self.root.winfo_screenwidth()
-        tinggi_layar = self.root.winfo_screenheight()
-        self.root.geometry(f"{lebar_layar}x{tinggi_layar}")
+        # Label untuk latar belakang
+        self.label_latar = tk.Label(self.jendela, image=self.foto_latar)
+        self.label_latar.place(relwidth=1, relheight=1)
 
-        self.frame_utama = tk.Frame(self.root, bg="white")
-        self.frame_utama.pack(pady=10)
-       
-         # Panggil fungsi `on_closing` saat aplikasi ditutup
-        self.root.protocol("WM_DELETE_WINDOW", self.saat_keluar)
+        # Frame utama di atas latar belakang
+        self.bingkai_utama = tk.Frame(self.jendela, bg="white", relief="solid", bd=2)
+        self.bingkai_utama.place(relx=0.5, rely=0.5, anchor="center")
+
+        # Atur event saat jendela ditutup
+        self.jendela.protocol("WM_DELETE_WINDOW", self.tutup_aplikasi)
+
         self.tampilkan_menu_utama()
 
-    def saat_keluar(self):
-        """Simpan data saat aplikasi ditutup."""
-        self.database.simpan_data()
-        self.root.destroy()
-
-    def bersihkan_frame(self):
-        for widget in self.frame_utama.winfo_children():
+    def tampilkan_menu_utama(self):
+        for widget in self.bingkai_utama.winfo_children():
             widget.destroy()
+        tk.Label(self.bingkai_utama, text="Menu Utama", font=("Arial", 16)).pack(pady=10)
+        tk.Button(self.bingkai_utama, text="Tambah Makanan", width=20).pack(pady=5)
+        tk.Button(self.bingkai_utama, text="Hitung Nutrisi", width=20).pack(pady=5)
+
+    def tutup_aplikasi(self):
+        self.jendela.destroy()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    aplikasi = AplikasiNutrisi(root)
+    root.mainloop()
+
 
     def tampilkan_menu_utama(self):
         self.bersihkan_frame()
