@@ -106,22 +106,15 @@ class AplikasiNutrisi:
         self.jendela.protocol("WM_DELETE_WINDOW", self.tutup_aplikasi)
 
         self.tampilkan_menu_utama()
+        
+    def saat_keluar(self):
+        """Simpan data saat aplikasi ditutup."""
+        self.database.simpan_data()
+        self.root.destroy()
 
-    def tampilkan_menu_utama(self):
-        for widget in self.bingkai_utama.winfo_children():
+    def bersihkan_frame(self):
+        for widget in self.frame_utama.winfo_children():
             widget.destroy()
-        tk.Label(self.bingkai_utama, text="Menu Utama", font=("Arial", 16)).pack(pady=10)
-        tk.Button(self.bingkai_utama, text="Tambah Makanan", width=20).pack(pady=5)
-        tk.Button(self.bingkai_utama, text="Hitung Nutrisi", width=20).pack(pady=5)
-
-    def tutup_aplikasi(self):
-        self.jendela.destroy()
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    aplikasi = AplikasiNutrisi(root)
-    root.mainloop()
-
 
     def tampilkan_menu_utama(self):
         self.bersihkan_frame()
