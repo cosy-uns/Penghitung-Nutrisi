@@ -11,7 +11,7 @@ class DatabaseMakanan:
         self.ambil_data()
 
     def ambil_data(self):
-        """Memuat data dari file JSON jika ada, jika tidak, buat file kosong."""
+        """Memuat data dari file JSON jika ada, jika tidak, maka akan dibuat buat file kosong."""
         if os.path.exists(self.file_json):
             with open(self.file_json, 'r') as file:
                 try:
