@@ -261,8 +261,8 @@ class AplikasiNutrisi:
                 hasil += f"Karbohidrat: {nutrisi_dihitung.get('Karbohidrat', 0):.2f}g\n"
                 hasil += f"Lemak: {nutrisi_dihitung.get('Lemak', 0):.2f}g\n"
                 hasil += f"Protein: {nutrisi_dihitung.get('Protein', 0):.2f}g\n"
-                hasil += f"Kalori: {nutrisi_dihitung.get('Kalori', 0):.2f}g\n"
-                label_hasil.config(text=hasil)
+                hasil += f"Kalori: {nutrisi_dihitung.get('Kalori', 0):.2f}kkal\n"
+                label_hasil.config(text=hasil, bg="#f6efe4")
             except ValueError:
                 label_hasil.config(text="Kesalahan: Berat harus berupa angka.")
 
