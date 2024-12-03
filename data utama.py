@@ -292,7 +292,7 @@ class AplikasiNutrisi:
             nutrisi = pilihan_nutrisi.get()
             makanan_terurut = self.database.urutkan_makanan_berdasarkan_nutrisi(nutrisi)
 
-            # Hapus semua data di Treeview sebelum menambahkan data baru
+            # Hapus semua data di Treeview sebelum menambahkan sebuah data baru
             for item in tampilan_tabel.get_children():
                 tampilan_tabel.delete(item)
 
