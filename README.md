@@ -12,6 +12,12 @@ Program ini adalah penghitung nutrisi makanan berbasis desktop yang membantu pen
    fitur ini berfungsi untuk melihat data-data makanan yang telah ditambahkan sebelumnya dalam bentuk tabel, selain itu terdapat fitur tambahan di mana pengguna bisa untuk memilih melihat urutan makanan berdasarkan nutrisi tertinggi yang dipilih oleh pengguna dalam per 100 gram.
 3. Hitung Nutrisi & kalori
    fitur ini berfungsi untuk menghitung jumlah nutrisi dalam makanan dalam jumlah berat yang berbeda-beda yang bertujuan untuk mengukur asupan makanan yang pas untuk tubuh.
+#  Library Yang Digunakan
+1. tkinter: Untuk membuat GUI aplikasi.
+2. ttk: Untuk membuat widget dengan tema yang lebih modern.
+3. PIL (Pillow): Untuk memanipulasi gambar (misalnya membuka dan menampilkan gambar latar belakang).
+4. json: Untuk menangani data dalam format JSON (seperti membaca dan menulis data makanan).
+5. os: Untuk berinteraksi dengan sistem file (memeriksa dan menangani file).
 # Diagram Alir
 ![Flowchart penghitung nutrisi](https://github.com/user-attachments/assets/0df9982e-381e-4cbe-8660-1d5cf41fb2e8)
 # Diagram Alir (revisi 1)
