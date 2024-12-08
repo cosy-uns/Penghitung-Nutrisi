@@ -19,10 +19,22 @@ Program ini adalah penghitung nutrisi makanan berbasis desktop yang membantu pen
 4. json: Untuk menangani data dalam format JSON (seperti membaca dan menulis data makanan).
 5. os: Untuk berinteraksi dengan sistem file (memeriksa dan menangani file).
 # Diagram Alir
+Proses dimulai dengan menampilkan menu utama yang memberikan pengguna empat pilihan: menambahkan data makanan, menghitung jumlah nutrisi, menampilkan data makanan, atau keluar dari sistem.
+- Jika pengguna memilih untuk menambahkan data makanan, sistem akan meminta pengguna untuk menginput nama makanan, kadar kalori, karbohidrat, protein, lemak, dan berat makanan (dalam gram). Data yang dimasukkan kemudian disimpan, dan pengguna dapat melihat daftar makanan yang telah diinput.
+- Jika pengguna memilih untuk menghitung jumlah nutrisi, sistem akan meminta pengguna untuk memilih jenis makanan dari data yang sudah ada dan memasukkan berat makanan yang diinginkan. Berdasarkan informasi tersebut, sistem menghitung total nutrisi (kalori, karbohidrat, protein, dan lemak) sesuai dengan berat makanan yang dimasukkan, dan hasilnya ditampilkan kepada pengguna.
+- Pilihan lainnya adalah menampilkan data makanan yang sudah tersimpan. Dalam opsi ini, pengguna juga diberikan kesempatan untuk mengurutkan data makanan berdasarkan salah satu dari empat kriteria: kalori, karbohidrat, protein, atau lemak. Sistem kemudian akan menampilkan daftar makanan yang diurutkan sesuai dengan kriteria yang dipilih.
+- Jika pengguna memilih opsi keluar, sistem akan berhenti dan proses berakhir. Diagram ini dirancang untuk membantu pengguna dalam mengelola informasi makanan dan nutrisinya secara sistematis dan interaktif.
+
+1. Diagram Alir 1
+
 ![Flowchart penghitung nutrisi](https://github.com/user-attachments/assets/0df9982e-381e-4cbe-8660-1d5cf41fb2e8)
-# Diagram Alir (revisi 1)
+
+2. Diagram Alir 2
+   
 ![Diagram Tanpa Judul drawio (1)](https://github.com/user-attachments/assets/ba4f257e-436d-422a-b3fb-9b578712ba77)
-# Diagram Alir (Fix)
+
+3. Diagram Alir 3 (FIX)
 ![Flowchart-PenghitungNutrisi drawio](https://github.com/user-attachments/assets/4a6c6ece-5040-407b-85ed-051b923e9b05)
+
 # SiteMap
 ![Sitemap Penghitung Nutrisi](https://github.com/user-attachments/assets/b9b2de2a-4e98-4c60-94c5-ea8624df7462)
